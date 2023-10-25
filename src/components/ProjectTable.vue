@@ -73,13 +73,6 @@ const getRandomColor = () => {
 </script>
 
 <style scoped>
-.badge {
-  color: white;
-  padding: 5px 10px;
-  border-radius: 15px;
-  font-size: 14px;
-}
-
 section {
   /* width: calc(100vw - 350px); */
   max-width: 100%;
@@ -94,6 +87,8 @@ section {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+
+  cursor: pointer;
 }
 
 thead {
@@ -120,8 +115,13 @@ tbody tr:nth-child(even) {
   background-color: #fff;
 }
 
+tbody tr:hover {
+  background: rgba(246, 250, 253, 0.6);
+}
+
 td {
-  padding: 20px;
+  padding: 10px;
+  height: 50px;
   min-width: 150px;
   z-index: 1;
 
@@ -187,5 +187,12 @@ th span {
     transform: scale(1);
     opacity: 0;
   }
+}
+
+.badge {
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 14px;
 }
 </style>
