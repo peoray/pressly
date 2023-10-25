@@ -31,7 +31,12 @@
             <td>{{ project.main_contractor }}</td>
             <td>{{ project.region }}</td>
             <td>{{ project.state }}</td>
-            <td>{{ project.status }}</td>
+            <!-- <td>{{ project.status }}</td> -->
+            <td>
+              <span class="badge" :style="getBadgeStyle(project.status)">
+                {{ project.status || '-' }}
+              </span>
+            </td>
             <td>{{ project.sector }}</td>
           </tr>
         </template>
@@ -51,9 +56,33 @@ defineProps({
     required: true
   }
 })
+
+const getBadgeStyle = (status) => {
+  if (!status && status === 'completed') {
+    return {
+      backgroundColor: '#3BD811' // Green color for "completed"'
+    }
+  } else {
+    return {
+      backgroundColor: getRandomColor() // Random color for other statuses
+    }
+  }
+}
+
+const getRandomColor = () => {
+  // Generate a random color as a hexadecimal value
+  return '#' + Math.floor(Math.random() * 16777215).toString(16)
+}
 </script>
 
 <style scoped>
+.badge {
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 14px;
+}
+
 section {
   /* width: calc(100vw - 350px); */
   max-width: 100%;
