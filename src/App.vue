@@ -1,40 +1,27 @@
-<script setup>
-import ProjectTable from './components/ProjectTable.vue'
-</script>
-
 <template>
   <h1>This is Press One Assessment</h1>
 
   <main>
-    <ProjectTable />
+    <ProjectTable :projects="data" :loading="loading" />
   </main>
 </template>
 
-<style scoped>
-/* header {
-  line-height: 1.5;
+<script setup>
+import { onMounted } from 'vue'
+import useFetch from './composables/useFetch'
+
+import ProjectTable from './components/ProjectTable.vue'
+
+const apiUrl = 'https://70c5b72c-65db-4a66-ba01-3e14763157e8.mock.pstmn.io/?page=1'
+const { data, loading, fetchData } = useFetch(apiUrl)
+
+onMounted(() => {
+  fetchData()
+})
+</script>
+
+<style>
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-} */
 </style>
