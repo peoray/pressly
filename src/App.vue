@@ -1,14 +1,14 @@
 <template>
-  <div class="info">
-    <img src="@assets/pressone.png" alt="Press One logo" />
-    <h1>This is Press One</h1>
-    <p>
-      PressOne gives you a business phone number to bring all your conversations together, so you
-      can offer a great customer experience.
-    </p>
-  </div>
-
   <main>
+    <div class="info">
+      <img src="@assets/pressone.png" alt="Press One logo" />
+      <h1>This is Press One</h1>
+      <p>
+        PressOne gives you a business phone number to bring all your conversations together, so you
+        can offer a great customer experience.
+      </p>
+    </div>
+
     <ProjectTable :projects="data" :loading="loading" />
   </main>
 </template>

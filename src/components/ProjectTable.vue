@@ -1,8 +1,5 @@
 <template>
   <section>
-    <!-- <div>
-      {{ loading ? 'This is a loading message' : 'This is a data message' }}
-    </div> -->
     <table>
       <thead>
         <tr>
