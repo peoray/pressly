@@ -4,11 +4,6 @@ import { mount } from '@vue/test-utils'
 import ProjectTable from '../ProjectTable.vue'
 
 describe('ProjectTable', () => {
-  // it('renders properly', () => {
-  //   const wrapper = mount(ProjectTable, { props: { msg: 'Hello Vitest' } })
-  //   expect(wrapper.text()).toContain('Hello Vitest')
-  // })
-
   it('renders the table with the correct number of rows', async () => {
     const projects = [
       {
@@ -41,7 +36,8 @@ describe('ProjectTable', () => {
     })
 
     const rows = wrapper.findAll('tbody tr')
-    expect(rows.length).toBe(2) // Adjust the number based on your test data
+    expect(rows.length).toBe(2) / expect(rows[0].text()).toContain('Project 1')
+    expect(rows[0].text()).toContain('Dev 1')
   })
 
   it('displays loading message when loading is true', async () => {
@@ -52,8 +48,22 @@ describe('ProjectTable', () => {
       }
     })
 
-    const loadingMessage = wrapper.find('.loading') // Adjust the selector based on your actual loading message
+    const loadingMessage = wrapper.find('.loading')
     expect(loadingMessage.exists()).toBe(true)
+    expect(loadingMessage.text()).toBe('Loading...')
+  })
+
+  it('renders "No projects found" message when there are no projects and loading is false', async () => {
+    const wrapper = mount(ProjectTable, {
+      props: {
+        projects: [],
+        loading: false
+      }
+    })
+
+    const noProjectsMessage = wrapper.find('.empty')
+    expect(noProjectsMessage.exists()).toBe(true)
+    expect(noProjectsMessage.text()).toBe('No projects found.')
   })
 
   it('renders project names correctly', async () => {

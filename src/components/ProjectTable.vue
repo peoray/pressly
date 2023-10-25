@@ -21,7 +21,7 @@
           <td class="loading" colspan="14">Loading...</td>
         </tr>
         <tr v-if="!projects?.length && !loading">
-          <td colspan="7">No projects found.</td>
+          <td class="empty" colspan="7">No projects found.</td>
         </tr>
 
         <template v-if="projects?.length && !loading">
@@ -143,12 +143,16 @@ th span {
   }
 }
 
-.loading {
+.loading,
+.empty {
   text-align: center;
   margin: 100px;
   height: 100px;
-  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
   color: #28394b !important;
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+.loading {
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
 @keyframes ping {
