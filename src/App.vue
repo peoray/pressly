@@ -1,5 +1,12 @@
 <template>
-  <h1>This is Press One Assessment</h1>
+  <div class="info">
+    <img src="@assets/pressone.png" alt="Press One logo" />
+    <h1>This is Press One</h1>
+    <p>
+      PressOne gives you a business phone number to bring all your conversations together, so you
+      can offer a great customer experience.
+    </p>
+  </div>
 
   <main>
     <ProjectTable :projects="data" :loading="loading" />
@@ -23,5 +30,18 @@ onMounted(() => {
 <style>
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.info h1 {
+  color: #28394b;
 }
 </style>

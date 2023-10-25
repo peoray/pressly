@@ -1,7 +1,7 @@
 import { ref, watchEffect } from 'vue'
 
 const useFetch = (url) => {
-  const data = ref(null)
+  const data = ref([])
   const loading = ref(false)
   const error = ref(null)
 
@@ -17,8 +17,6 @@ const useFetch = (url) => {
       const res = await response.json()
 
       data.value = res.data
-
-      console.log(data)
     } catch (err) {
       error.value = err
     } finally {

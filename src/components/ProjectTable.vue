@@ -1,5 +1,8 @@
 <template>
   <section>
+    <!-- <div>
+      {{ loading ? 'This is a loading message' : 'This is a data message' }}
+    </div> -->
     <table>
       <thead>
         <tr>
@@ -13,15 +16,25 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(project, index) in projects" :key="project.id">
-          <td>{{ project.project_name }}</td>
-          <td>{{ project.developer }}</td>
-          <td>{{ project.main_contractor }}</td>
-          <td>{{ project.region }}</td>
-          <td>{{ project.state }}</td>
-          <td>{{ project.status }}</td>
-          <td>{{ project.sector }}</td>
+        <tr v-if="loading">
+          <!-- Show a loading message or spinner when loading is true -->
+          <td class="loading" colspan="14">Loading...</td>
         </tr>
+        <tr v-if="!projects?.length && !loading">
+          <td colspan="7">No projects found.</td>
+        </tr>
+
+        <template v-if="projects?.length && !loading">
+          <tr v-for="project in projects" :key="project.id">
+            <td>{{ project.project_name }}</td>
+            <td>{{ project.developer }}</td>
+            <td>{{ project.main_contractor }}</td>
+            <td>{{ project.region }}</td>
+            <td>{{ project.state }}</td>
+            <td>{{ project.status }}</td>
+            <td>{{ project.sector }}</td>
+          </tr>
+        </template>
       </tbody>
     </table>
   </section>
@@ -44,8 +57,8 @@ defineProps({
 section {
   /* width: calc(100vw - 350px); */
   max-width: 100%;
-  height: 1000px;
-  margin: 100px 6px;
+  /* height: 1000px; */
+  margin: 20px 6px;
 
   overflow: scroll;
   box-shadow: 0.1px 0.1px 0.1px 0.5px rgba(0, 0, 0, 0.1);
@@ -98,7 +111,7 @@ th span {
 
 @media only screen and (min-width: 800px) {
   section {
-    margin: 0 auto;
+    margin: 25px auto;
   }
 
   th:nth-child(1),
@@ -122,11 +135,27 @@ th span {
     color: #555a62;
   }
 }
-@media only screen and (min-width: 960px) {
+@media only screen and (min-width: 1024px) {
   section {
     width: calc(100vw - 150px);
     /* height: calc(100vw - 350px); */
     height: auto;
+  }
+}
+
+.loading {
+  text-align: center;
+  margin: 100px;
+  height: 100px;
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+  color: #28394b !important;
+}
+
+@keyframes ping {
+  75%,
+  100% {
+    transform: scale(1);
+    opacity: 0;
   }
 }
 </style>

@@ -52,7 +52,7 @@ describe('ProjectTable', () => {
       }
     })
 
-    const loadingMessage = wrapper.find('.loading-message') // Adjust the selector based on your actual loading message
+    const loadingMessage = wrapper.find('.loading') // Adjust the selector based on your actual loading message
     expect(loadingMessage.exists()).toBe(true)
   })
 
